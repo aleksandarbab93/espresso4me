@@ -1,0 +1,40 @@
+/*
+ Theme Name:   My Listing Child
+ Theme URI:    http://mylisting.27collective.net/my-city/
+ Description:  MyListing Child Theme
+ Author:       27collective
+ Author URI:   https://27collective.net/
+ Template:     my-listing
+ Version:      1.1
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Tags:         one-column, two-columns, three-columns, left-sidebar, right-sidebar, grid-layout, custom-menu, custom-logo, featured-images, footer-widgets, full-width-template, sticky-post, theme-options, threaded-comments, translation-ready
+ Text Domain:  my-listing-child
+*/
+
+/* --- Cities Grid Widget --- */
+.cg-cities-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--cg-cols, 4), 1fr);
+    gap: 16px;
+}
+@media (max-width: 1024px) {
+    .cg-cities-grid {
+        grid-template-columns: repeat(var(--cg-cols-tablet, 2), 1fr);
+        gap: 12px;
+    }
+}
+@media (max-width: 767px) {
+    .cg-cities-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .cg-cities-grid .cg-city-card  { height: 140px !important; }
+    .cg-cities-grid .cg-city-info  { padding: 12px 14px; }
+    .cg-cities-grid .cg-city-name  { font-size: 15px !important; }
+    .cg-cities-grid .cg-city-count { font-size: 12px !important; }
+}
+@media (max-width: 480px) {
+    .cg-cities-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .cg-cities-grid .cg-city-card { height: 120px !important; }
+}
+
+/* --- Dodaj Lokal CTA Widget --- */
+.dl-cta-button:hover { opacity: 0.85; }
