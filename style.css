@@ -457,6 +457,64 @@
 }
 
 /* Gradient overlay: transparent top → dark bottom */
+/* Pagination styling: centered pill 'Next' and circular page numbers */
+.navigation.pagination {
+    margin: 32px 0 60px;
+}
+.navigation.pagination .nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.navigation.pagination .nav-links .page-numbers {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    background: #fff;
+    color: #222;
+    box-shadow: 0 8px 18px rgba(22,22,22,0.06);
+    text-decoration: none;
+    transition: background .12s ease, color .12s ease, transform .08s ease;
+}
+.navigation.pagination .nav-links .page-numbers:hover {
+    transform: translateY(-2px);
+}
+.navigation.pagination .nav-links .page-numbers.current {
+    background: #9a5927;
+    color: #fff;
+}
+.navigation.pagination .nav-links .prev.page-numbers,
+.navigation.pagination .nav-links .next.page-numbers {
+    border-radius: 999px;
+    padding: 8px 14px;
+    min-width: auto;
+    background: #fff;
+    color: #222;
+}
+.navigation.pagination .nav-links .next.page-numbers {
+    min-width: auto;
+}
+.navigation.pagination .nav-links .prev.page-numbers:hover,
+.navigation.pagination .nav-links .next.page-numbers:hover {
+    background: #9a5927;
+    color: #fff;
+}
+
+.pagination-arrow svg { display: block; width: 18px; height: 18px; }
+.navigation.pagination .nav-links .page-numbers .pagination-arrow { color: inherit; }
+
+@media (max-width: 780px) {
+    .navigation.pagination .nav-links .prev.page-numbers,
+    .navigation.pagination .nav-links .next.page-numbers {
+        min-width: 120px;
+        padding: 10px 20px;
+    }
+}
 .post-hero-overlay {
     position: absolute !important;
     top: 0 !important;

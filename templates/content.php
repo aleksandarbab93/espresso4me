@@ -177,13 +177,4 @@ add_action( 'mylisting/get-footer', function() use ( $share_links ) {
 	</div>
 </section>
 
-<?php if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ): ?>
-	<section class="i-section">
-		<div class="container">
-			<div class="row section-title">
-				<h2 class="case27-primary-text"><?php _e( 'Comments', 'my-listing' ) ?></h2>
-			</div>
-		</div>
-		<?php comments_template() ?>
-	</section>
-<?php endif ?>
+<!-- Comments removed per request -->
