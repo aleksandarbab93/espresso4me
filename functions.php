@@ -2,7 +2,8 @@
 
 // Enqueue child theme style.css (sadrži CSS za widgete).
 add_action('wp_enqueue_scripts', function () {
-    wp_enqueue_style('child-style', get_stylesheet_uri(), [], wp_get_theme()->get('Version'));
+    $ver = filemtime(get_stylesheet_directory() . '/style.css') ?: wp_get_theme()->get('Version');
+    wp_enqueue_style('child-style', get_stylesheet_uri(), [], $ver);
 
     if (is_rtl()) {
         wp_enqueue_style('mylisting-rtl', get_template_directory_uri() . '/rtl.css', [], wp_get_theme()->get('Version'));
