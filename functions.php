@@ -52,34 +52,34 @@ add_action('elementor/widgets/register', function($widgets_manager) {
     class Cities_Grid_Widget extends \Elementor\Widget_Base {
 
         public function get_name() { return 'cities-grid'; }
-        public function get_title() { return '<strong>27</strong> > Gradovi'; }
+        public function get_title() { return __('<strong>27</strong> > Gradovi', 'my-listing-child'); }
         public function get_icon() { return 'eicon-posts-grid'; }
         public function get_categories() { return ['my-listing']; }
 
         protected function register_controls() {
-            $this->start_controls_section('section_cities', ['label' => 'Gradovi']);
+            $this->start_controls_section('section_cities', ['label' => __('Gradovi', 'my-listing-child')]);
 
             $this->add_control('explore_page', [
-                'label'       => 'URL explore stranice',
+                'label'       => __('URL explore stranice', 'my-listing-child'),
                 'type'        => \Elementor\Controls_Manager::TEXT,
                 'default'     => '/explore/',
-                'description' => 'Npr. /explore/',
+                'description' => __('Npr. /explore/', 'my-listing-child'),
             ]);
 
             $this->add_control('listing_type', [
-                'label'   => 'Listing type slug',
+                'label'   => __('Listing type slug', 'my-listing-child'),
                 'type'    => \Elementor\Controls_Manager::TEXT,
                 'default' => 'coffee-shop',
             ]);
 
             $this->add_control('label_suffix', [
-                'label'   => 'Sufiks broja (npr. "mjesta za kafu")',
+                'label'   => __('Sufiks broja (npr. "mjesta za kafu")', 'my-listing-child'),
                 'type'    => \Elementor\Controls_Manager::TEXT,
-                'default' => 'mjesta za kafu',
+                'default' => __('mjesta za kafu', 'my-listing-child'),
             ]);
 
             $this->add_control('columns', [
-                'label'   => 'Kolone',
+                'label'   => __('Kolone', 'my-listing-child'),
                 'type'    => \Elementor\Controls_Manager::SELECT,
                 'default' => '4',
                 'options' => ['2' => '2', '3' => '3', '4' => '4'],
@@ -88,25 +88,25 @@ add_action('elementor/widgets/register', function($widgets_manager) {
             $repeater = new \Elementor\Repeater();
 
             $repeater->add_control('city_name', [
-                'label'   => 'Naziv grada',
+                'label'   => __('Naziv grada', 'my-listing-child'),
                 'type'    => \Elementor\Controls_Manager::TEXT,
                 'default' => 'Podgorica',
             ]);
 
             $repeater->add_control('region_slug', [
-                'label'       => 'Region slug',
+                'label'       => __('Region slug', 'my-listing-child'),
                 'type'        => \Elementor\Controls_Manager::TEXT,
                 'default'     => 'podgorica',
-                'description' => 'Slug iz taksonomije region',
+                'description' => __('Slug iz taksonomije region', 'my-listing-child'),
             ]);
 
             $repeater->add_control('city_image', [
-                'label' => 'Slika grada',
+                'label' => __('Slika grada', 'my-listing-child'),
                 'type'  => \Elementor\Controls_Manager::MEDIA,
             ]);
 
             $this->add_control('cities', [
-                'label'       => 'Gradovi',
+                'label'       => __('Gradovi', 'my-listing-child'),
                 'type'        => \Elementor\Controls_Manager::REPEATER,
                 'fields'      => $repeater->get_controls(),
                 'default'     => [
@@ -126,12 +126,12 @@ add_action('elementor/widgets/register', function($widgets_manager) {
 
             // Style sekcija
             $this->start_controls_section('section_style', [
-                'label' => 'Stil',
+                'label' => __('Stil', 'my-listing-child'),
                 'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
             ]);
 
             $this->add_control('card_height', [
-                'label'      => 'Visina kartice (px)',
+                'label'      => __('Visina kartice (px)', 'my-listing-child'),
                 'type'       => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range'      => ['px' => ['min' => 100, 'max' => 500]],
@@ -140,7 +140,7 @@ add_action('elementor/widgets/register', function($widgets_manager) {
             ]);
 
             $this->add_control('card_border_radius', [
-                'label'      => 'Zaobljeni uglovi (px)',
+                'label'      => __('Zaobljeni uglovi (px)', 'my-listing-child'),
                 'type'       => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range'      => ['px' => ['min' => 0, 'max' => 40]],
@@ -149,7 +149,7 @@ add_action('elementor/widgets/register', function($widgets_manager) {
             ]);
 
             $this->add_control('overlay_color', [
-                'label'     => 'Boja overlay-a',
+                'label'     => __('Boja overlay-a', 'my-listing-child'),
                 'type'      => \Elementor\Controls_Manager::COLOR,
                 'default'   => 'rgba(0,0,0,0.45)',
                 'selectors' => ['{{WRAPPER}} .cg-city-overlay' => 'background: {{VALUE}};'],
@@ -238,35 +238,35 @@ add_action('elementor/widgets/register', function($widgets_manager) {
     class Dodaj_Lokal_Widget extends \Elementor\Widget_Base {
 
         public function get_name()       { return 'dodaj-lokal-cta'; }
-        public function get_title()      { return 'Dodaj lokal (CTA)'; }
+        public function get_title()      { return __('Dodaj lokal (CTA)', 'my-listing-child'); }
         public function get_icon()       { return 'eicon-call-to-action'; }
         public function get_categories() { return ['my-listing']; }
 
         protected function register_controls() {
             // --- Content ---
-            $this->start_controls_section('section_content', ['label' => 'Sadržaj']);
+            $this->start_controls_section('section_content', ['label' => __('Sadržaj', 'my-listing-child')]);
 
             $this->add_control('heading', [
-                'label'   => 'Naslov',
+                'label'   => __('Naslov', 'my-listing-child'),
                 'type'    => \Elementor\Controls_Manager::TEXT,
-                'default' => 'Imate lokal?',
+                'default' => __('Imate lokal?', 'my-listing-child'),
             ]);
 
             $this->add_control('subheading', [
-                'label'   => 'Podnaslov',
+                'label'   => __('Podnaslov', 'my-listing-child'),
                 'type'    => \Elementor\Controls_Manager::TEXTAREA,
-                'default' => 'Dodajte ga na espresso4.me i budite vidljivi svima koji traže gdje na kafu u vašem gradu.',
+                'default' => __('Dodajte ga na espresso4.me i budite vidljivi svima koji traže gdje na kafu u vašem gradu.', 'my-listing-child'),
                 'rows'    => 3,
             ]);
 
             $this->add_control('button_text', [
-                'label'   => 'Tekst dugmeta',
+                'label'   => __('Tekst dugmeta', 'my-listing-child'),
                 'type'    => \Elementor\Controls_Manager::TEXT,
-                'default' => 'Dodaj lokal',
+                'default' => __('Dodaj lokal', 'my-listing-child'),
             ]);
 
             $this->add_control('button_url', [
-                'label'         => 'URL dugmeta',
+                'label'         => __('URL dugmeta', 'my-listing-child'),
                 'type'          => \Elementor\Controls_Manager::URL,
                 'placeholder'   => '/dodaj-kafic/',
                 'default'       => ['url' => '/dodaj-kafic/'],
@@ -277,25 +277,25 @@ add_action('elementor/widgets/register', function($widgets_manager) {
 
             // --- Style ---
             $this->start_controls_section('section_style', [
-                'label' => 'Stil',
+                'label' => __('Stil', 'my-listing-child'),
                 'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
             ]);
 
             $this->add_control('bg_color', [
-                'label'     => 'Pozadinska boja',
+                'label'     => __('Pozadinska boja', 'my-listing-child'),
                 'type'      => \Elementor\Controls_Manager::COLOR,
                 'default'   => '#f9f4ef',
                 'selectors' => ['{{WRAPPER}} .dl-cta-wrap' => 'background-color: {{VALUE}};'],
             ]);
 
             $this->add_control('accent_color', [
-                'label'   => 'Boja dugmeta',
+                'label'   => __('Boja dugmeta', 'my-listing-child'),
                 'type'    => \Elementor\Controls_Manager::COLOR,
                 'default' => '#c8773a',
             ]);
 
             $this->add_control('text_color', [
-                'label'     => 'Boja teksta',
+                'label'     => __('Boja teksta', 'my-listing-child'),
                 'type'      => \Elementor\Controls_Manager::COLOR,
                 'default'   => '#2b1e12',
                 'selectors' => [
@@ -305,7 +305,7 @@ add_action('elementor/widgets/register', function($widgets_manager) {
             ]);
 
             $this->add_control('border_radius', [
-                'label'      => 'Zaobljeni uglovi (px)',
+                'label'      => __('Zaobljeni uglovi (px)', 'my-listing-child'),
                 'type'       => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range'      => ['px' => ['min' => 0, 'max' => 40]],
