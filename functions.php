@@ -10,6 +10,26 @@ add_action('wp_enqueue_scripts', function () {
     }
 }, 500);
 
+// Digitalni Meni landing page CSS
+add_action('wp_enqueue_scripts', function () {
+    $is_template = is_singular('page') && get_page_template_slug() === 'template-digitalni-meni.php';
+    $is_rewrite  = get_query_var('edm_page') === 'digitalni-meni';
+
+    if ( ! $is_template && ! $is_rewrite ) {
+        return;
+    }
+
+    $css_path = get_stylesheet_directory() . '/assets/css/digitalni-meni.css';
+    $ver      = file_exists( $css_path ) ? filemtime( $css_path ) : '1.0';
+
+    wp_enqueue_style(
+        'edm-digitalni-meni',
+        get_stylesheet_directory_uri() . '/assets/css/digitalni-meni.css',
+        [],
+        $ver
+    );
+}, 20);
+
 
 
 if (! function_exists('ml_child_is_plugin_active')) {

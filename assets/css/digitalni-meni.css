@@ -1,0 +1,540 @@
+/* ─── Landing page variables ────────────────────────────── */
+:root {
+	--lp-brown:      #2b1e12;
+	--lp-brown-deep: #1e1510;
+	--lp-accent:     #9a5927;
+	--lp-accent-dk:  #7a4220;
+	--lp-accent-bg:  rgba(154,89,39,.12);
+	--lp-bg:         #faf8f5;
+	--lp-muted:      #7a6655;
+	--lp-border:     #e8ddd4;
+	--lp-alt:        #f3ede7;
+}
+
+/* ─── Reset inside our wrapper ──────────────────────────── */
+.edm-lp-page *,
+.edm-lp-page *::before,
+.edm-lp-page *::after { box-sizing: border-box; }
+
+.edm-lp-page {
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	color: var(--lp-brown);
+	line-height: 1.6;
+}
+
+.edm-lp-page a { color: inherit; }
+.edm-lp-page img { display: block; max-width: 100%; }
+
+/* ─── Buttons ────────────────────────────────────────────── */
+.edm-lp-page .lp-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 7px;
+	font-weight: 700;
+	border-radius: 10px;
+	padding: 13px 24px;
+	font-size: 0.95rem;
+	text-decoration: none;
+	cursor: pointer;
+	border: 2px solid transparent;
+	transition: background .15s, color .15s, border-color .15s, transform .1s;
+	line-height: 1;
+	-webkit-tap-highlight-color: transparent;
+}
+.edm-lp-page .lp-btn:active { transform: scale(.97); }
+
+.edm-lp-page .lp-btn--primary             { background: var(--lp-accent); color: #fff; border-color: var(--lp-accent); }
+.edm-lp-page .lp-btn--primary:hover       { background: var(--lp-accent-dk); border-color: var(--lp-accent-dk); }
+
+.edm-lp-page .lp-btn--ghost               { background: rgba(255,255,255,.1); color: #fff; border-color: rgba(255,255,255,.25); }
+.edm-lp-page .lp-btn--ghost:hover         { background: rgba(255,255,255,.2); }
+
+.edm-lp-page .lp-btn--outline             { background: transparent; color: var(--lp-accent); border-color: var(--lp-accent); }
+.edm-lp-page .lp-btn--outline:hover       { background: var(--lp-accent); color: #fff; }
+
+.edm-lp-page .lp-btn--lg { padding: 15px 30px; font-size: 1rem; border-radius: 12px; }
+
+/* ─── Section base ───────────────────────────────────────── */
+.edm-lp-page .lp-section {
+	padding: 80px 20px;
+	background: var(--lp-bg);
+}
+.edm-lp-page .lp-section--alt  { background: var(--lp-alt); }
+.edm-lp-page .lp-section--dark { background: var(--lp-brown); color: #fff; }
+
+.edm-lp-page .lp-container { max-width: 1100px; margin: 0 auto; }
+
+.edm-lp-page .lp-section-head {
+	text-align: center;
+	margin-bottom: 52px;
+}
+.edm-lp-page .lp-section-head h2 {
+	font-size: 2.1rem;
+	font-weight: 800;
+	letter-spacing: -.025em;
+	margin: 0 0 10px;
+	line-height: 1.2;
+}
+.edm-lp-page .lp-section-head h2 em { color: var(--lp-accent); font-style: normal; }
+.edm-lp-page .lp-section-head p {
+	font-size: 1rem;
+	color: var(--lp-muted);
+	max-width: 480px;
+	margin: 0 auto;
+	line-height: 1.65;
+}
+.edm-lp-page .lp-section--dark .lp-section-head h2 { color: #fff; }
+.edm-lp-page .lp-section--dark .lp-section-head p  { color: rgba(255,255,255,.55); }
+
+/* ─── Hero ───────────────────────────────────────────────── */
+.edm-lp-page .lp-hero {
+	background: var(--lp-brown);
+	color: #fff;
+	padding: 72px 20px 64px;
+	overflow: hidden;
+}
+
+.edm-lp-page .lp-hero-inner {
+	max-width: 1100px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: 56px;
+	align-items: center;
+}
+
+.edm-lp-page .lp-hero-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	background: var(--lp-accent-bg);
+	color: var(--lp-accent);
+	border: 1px solid rgba(154,89,39,.35);
+	font-size: 0.74rem;
+	font-weight: 700;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+	padding: 5px 12px;
+	border-radius: 20px;
+	margin-bottom: 22px;
+}
+
+.edm-lp-page .lp-hero h1 {
+	font-size: 4.6rem;
+	font-weight: 800;
+	line-height: 1.08;
+	letter-spacing: -.04em;
+	margin: 0 0 22px;
+	color: #fff;
+}
+.edm-lp-page .lp-hero h1 em { color: var(--lp-accent); font-style: normal; }
+
+.edm-lp-page .lp-hero-sub {
+	font-size: 1.1rem;
+	color: rgba(255,255,255,.9);
+	line-height: 1.7;
+	max-width: 470px;
+	margin-bottom: 36px;
+}
+
+.edm-lp-page .lp-hero-btns {
+	display: flex;
+	gap: 12px;
+	flex-wrap: wrap;
+}
+
+/* ─── iPhone 3D mockup ───────────────────────────────────── */
+.edm-lp-page .lp-iphone-wrap {
+	flex-shrink: 0;
+	position: relative;
+}
+
+.edm-lp-page .lp-iphone {
+	width: 252px;
+	position: relative;
+	background: linear-gradient(148deg,
+		#5a5a5a 0%,
+		#333 18%,
+		#141414 45%,
+		#1c1c1e 72%,
+		#0a0a0a 100%
+	);
+	border-radius: 54px;
+	padding: 14px;
+	transform: perspective(1000px) rotateY(-20deg) rotateX(7deg);
+	transform-style: preserve-3d;
+	box-shadow:
+		-26px 36px 80px rgba(0,0,0,.88),
+		-10px 14px 28px rgba(0,0,0,.6),
+		4px -4px 18px rgba(0,0,0,.2),
+		inset 0 0 0 1.5px rgba(255,255,255,.16),
+		inset 1px 1px 0 rgba(255,255,255,.1),
+		inset -1px -1px 0 rgba(0,0,0,.4);
+}
+
+.edm-lp-page .lp-iphone::after {
+	content: '';
+	position: absolute;
+	left: -4px;
+	top: 22px;
+	bottom: 22px;
+	width: 4px;
+	background: linear-gradient(180deg, #3a3a3a 0%, #111 40%, #1e1e1e 70%, #0a0a0a 100%);
+	border-radius: 3px 0 0 3px;
+}
+
+.edm-lp-page .lp-iphone-mute {
+	position: absolute;
+	left: -5px; top: 26px;
+	width: 5px; height: 20px;
+	background: linear-gradient(90deg, #2e2e2e, #181818);
+	border-radius: 3px 0 0 3px;
+	box-shadow: -2px 1px 5px rgba(0,0,0,.6);
+}
+
+.edm-lp-page .lp-iphone-vol-up {
+	position: absolute;
+	left: -5px; top: 60px;
+	width: 5px; height: 36px;
+	background: linear-gradient(90deg, #2e2e2e, #181818);
+	border-radius: 3px 0 0 3px;
+	box-shadow: -2px 1px 5px rgba(0,0,0,.6);
+}
+
+.edm-lp-page .lp-iphone-vol-dn {
+	position: absolute;
+	left: -5px; top: 106px;
+	width: 5px; height: 36px;
+	background: linear-gradient(90deg, #2e2e2e, #181818);
+	border-radius: 3px 0 0 3px;
+	box-shadow: -2px 1px 5px rgba(0,0,0,.6);
+}
+
+.edm-lp-page .lp-iphone-power {
+	position: absolute;
+	right: -5px; top: 84px;
+	width: 5px; height: 60px;
+	background: linear-gradient(90deg, #181818, #2e2e2e);
+	border-radius: 0 3px 3px 0;
+	box-shadow: 2px 1px 5px rgba(0,0,0,.6);
+}
+
+.edm-lp-page .lp-iphone-screen {
+	background: #faf8f5;
+	border-radius: 42px;
+	overflow: hidden;
+	position: relative;
+	box-shadow:
+		inset 0 0 0 1px rgba(0,0,0,.14),
+		inset 0 3px 10px rgba(0,0,0,.22);
+}
+
+.edm-lp-page .lp-iphone-screen::before {
+	content: '';
+	position: absolute;
+	top: 0; left: 0; right: 0;
+	height: 52%;
+	background: linear-gradient(155deg,
+		rgba(255,255,255,.14) 0%,
+		rgba(255,255,255,.04) 45%,
+		transparent 70%
+	);
+	pointer-events: none;
+	z-index: 20;
+	border-radius: 42px 42px 0 0;
+}
+
+.edm-lp-page .lp-iphone-statusbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 8px 16px 4px;
+	background: #faf8f5;
+}
+.edm-lp-page .lp-iphone-statusbar-time {
+	font-size: 8.5px;
+	font-weight: 700;
+	color: var(--lp-brown);
+	letter-spacing: .02em;
+}
+.edm-lp-page .lp-iphone-statusbar-icons {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+}
+.edm-lp-page .lp-iphone-statusbar-icons svg { color: var(--lp-brown); }
+
+.edm-lp-page .lp-iphone-di {
+	width: 94px;
+	height: 28px;
+	background: #000;
+	border-radius: 14px;
+	margin: 10px auto 6px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	padding-right: 13px;
+	gap: 5px;
+	position: relative;
+	z-index: 1;
+}
+.edm-lp-page .lp-iphone-di-cam {
+	width: 10px; height: 10px;
+	background: #111;
+	border-radius: 50%;
+	box-shadow: 0 0 0 2px rgba(255,255,255,.04), inset 0 0 5px rgba(50,100,255,.2);
+}
+.edm-lp-page .lp-iphone-di-dot {
+	width: 5px; height: 5px;
+	background: #1a1a1a;
+	border-radius: 50%;
+}
+
+.edm-lp-page .lp-phone-header {
+	background: var(--lp-brown);
+	padding: 8px 11px;
+	display: flex;
+	align-items: center;
+	gap: 7px;
+}
+.edm-lp-page .lp-phone-logo {
+	width: 24px; height: 24px;
+	border-radius: 50%;
+	background: var(--lp-accent);
+	border: 1.5px solid rgba(255,255,255,.15);
+	flex-shrink: 0;
+	display: flex; align-items: center; justify-content: center;
+}
+.edm-lp-page .lp-phone-logo svg { color: #fff; }
+.edm-lp-page .lp-phone-info { flex: 1; min-width: 0; }
+.edm-lp-page .lp-phone-name { font-size: 8px; font-weight: 700; color: #fff; line-height: 1.2; }
+.edm-lp-page .lp-phone-sub  { font-size: 6px; color: rgba(255,255,255,.45); }
+.edm-lp-page .lp-phone-tag  {
+	background: var(--lp-accent); color: #fff;
+	font-size: 5.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+	padding: 2px 5px; border-radius: 6px;
+}
+
+.edm-lp-page .lp-phone-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 6px;
+	padding: 8px;
+}
+
+.edm-lp-page .lp-phone-card {
+	background: #fff;
+	border: 1.5px solid #ede8e3;
+	border-radius: 11px;
+	padding: 16px 8px 13px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6px;
+}
+.edm-lp-page .lp-phone-card svg { color: var(--lp-accent); }
+.edm-lp-page .lp-phone-card-name {
+	font-size: 7px; font-weight: 700; text-transform: uppercase;
+	color: var(--lp-brown); letter-spacing: .04em; text-align: center; line-height: 1.3;
+}
+
+.edm-lp-page .lp-iphone-bar {
+	width: 90px; height: 4px;
+	background: rgba(0,0,0,.14);
+	border-radius: 2px;
+	margin: 8px auto 10px;
+}
+
+/* ─── Features — 3 cards ─────────────────────────────────── */
+.edm-lp-page .lp-feat-cards {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 24px;
+}
+
+.edm-lp-page .lp-feat-card {
+	background: #fff;
+	border: 1px solid var(--lp-border);
+	border-radius: 20px;
+	padding: 32px 28px 28px;
+	transition: box-shadow .2s, transform .2s;
+}
+.edm-lp-page .lp-feat-card:hover {
+	box-shadow: 0 10px 32px rgba(43,30,18,.09);
+	transform: translateY(-4px);
+}
+
+.edm-lp-page .lp-feat-circle {
+	width: 72px; height: 72px;
+	border-radius: 50%;
+	display: flex; align-items: center; justify-content: center;
+	margin-bottom: 22px;
+	color: #fff;
+}
+.edm-lp-page .lp-feat-circle--1 { background: var(--lp-accent); }
+.edm-lp-page .lp-feat-circle--2 { background: #2d7a4f; }
+.edm-lp-page .lp-feat-circle--3 { background: #1e5ba8; }
+
+.edm-lp-page .lp-feat-card h3 { font-size: 1.1rem; font-weight: 700; margin: 0 0 8px; }
+.edm-lp-page .lp-feat-card > p { font-size: 0.875rem; color: var(--lp-muted); line-height: 1.6; margin: 0 0 18px; }
+
+.edm-lp-page .lp-feat-list { list-style: none; margin: 0; padding: 0; }
+.edm-lp-page .lp-feat-list li {
+	font-size: 0.875rem;
+	color: var(--lp-brown);
+	padding: 5px 0;
+	display: flex;
+	align-items: flex-start;
+	gap: 9px;
+	border-bottom: 1px solid #f5ede7;
+}
+.edm-lp-page .lp-feat-list li:last-child { border-bottom: none; }
+.edm-lp-page .lp-feat-list li::before {
+	content: '';
+	width: 18px; height: 18px;
+	flex-shrink: 0;
+	margin-top: 1px;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%2316a34a' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+/* ─── How it works ───────────────────────────────────────── */
+.edm-lp-page .lp-steps {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 32px;
+	position: relative;
+}
+.edm-lp-page .lp-steps::before {
+	content: '';
+	position: absolute;
+	top: 28px;
+	left: calc(16.66% + 20px);
+	right: calc(16.66% + 20px);
+	height: 2px;
+	background: var(--lp-border);
+}
+.edm-lp-page .lp-step { text-align: center; position: relative; }
+.edm-lp-page .lp-step-num {
+	width: 56px; height: 56px;
+	background: var(--lp-accent);
+	color: #fff;
+	font-size: 1.3rem; font-weight: 800;
+	border-radius: 50%;
+	display: flex; align-items: center; justify-content: center;
+	margin: 0 auto 18px;
+	box-shadow: 0 4px 16px rgba(154,89,39,.38);
+	position: relative;
+	z-index: 1;
+}
+.edm-lp-page .lp-step h3 { font-size: 1rem; font-weight: 700; margin: 0 0 8px; }
+.edm-lp-page .lp-step p  { font-size: 0.875rem; color: var(--lp-muted); line-height: 1.65; margin: 0; }
+
+/* ─── Pricing ────────────────────────────────────────────── */
+.edm-lp-page .lp-pricing {
+	display: grid;
+	grid-template-columns: repeat(2, 380px);
+	gap: 24px;
+	justify-content: center;
+}
+
+.edm-lp-page .lp-price-card {
+	background: #fff;
+	border: 2px solid var(--lp-border);
+	border-radius: 20px;
+	padding: 36px 32px 32px;
+	position: relative;
+}
+.edm-lp-page .lp-price-card--featured { border-color: var(--lp-accent); }
+
+.edm-lp-page .lp-price-badge {
+	position: absolute;
+	top: -14px; left: 50%;
+	transform: translateX(-50%);
+	background: var(--lp-accent);
+	color: #fff;
+	font-size: 0.7rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+	padding: 4px 14px;
+	border-radius: 20px;
+	white-space: nowrap;
+}
+
+.edm-lp-page .lp-price-name   { font-size: 1.1rem; font-weight: 700; margin: 0 0 6px; }
+.edm-lp-page .lp-price-desc   { font-size: 0.875rem; color: var(--lp-muted); margin: 0 0 18px; }
+.edm-lp-page .lp-price-amount { font-size: 3rem; font-weight: 800; color: var(--lp-accent); letter-spacing: -.04em; line-height: 1; }
+.edm-lp-page .lp-price-amount sup { font-size: 1.2rem; font-weight: 700; vertical-align: top; margin-top: .4rem; }
+.edm-lp-page .lp-price-period { font-size: 0.82rem; color: var(--lp-muted); margin: 2px 0 22px; }
+.edm-lp-page .lp-price-divider { border: none; border-top: 1px solid var(--lp-border); margin: 0 0 20px; }
+
+.edm-lp-page .lp-price-list   { list-style: none; margin: 0 0 26px; padding: 0; }
+.edm-lp-page .lp-price-list li {
+	font-size: 0.875rem;
+	color: var(--lp-brown);
+	padding: 6px 0;
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	border-bottom: 1px solid #f5ede7;
+}
+.edm-lp-page .lp-price-list li:last-child { border-bottom: none; }
+.edm-lp-page .lp-price-list li::before {
+	content: '';
+	width: 18px; height: 18px;
+	flex-shrink: 0;
+	margin-top: 1px;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%239a5927' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.edm-lp-page .lp-price-card .lp-btn { width: 100%; }
+
+/* ─── CTA strip ──────────────────────────────────────────── */
+.edm-lp-page .lp-cta-strip {
+	background: var(--lp-brown);
+	padding: 80px 20px;
+	text-align: center;
+	color: #fff;
+}
+.edm-lp-page .lp-cta-strip h2 {
+	font-size: 2.2rem; font-weight: 800; letter-spacing: -.025em; margin: 0 0 12px;
+}
+.edm-lp-page .lp-cta-strip h2 em { color: var(--lp-accent); font-style: normal; }
+.edm-lp-page .lp-cta-strip p  {
+	font-size: 1rem; color: rgba(255,255,255,.6); margin: 0 auto 32px;
+	max-width: 420px;
+}
+.edm-lp-page .lp-cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* ─── Responsive ─────────────────────────────────────────── */
+@media (max-width: 960px) {
+	.edm-lp-page .lp-hero-inner  { grid-template-columns: 1fr; text-align: center; gap: 44px; }
+	.edm-lp-page .lp-hero h1     { font-size: 3.4rem; }
+	.edm-lp-page .lp-hero-sub    { margin-left: auto; margin-right: auto; }
+	.edm-lp-page .lp-hero-btns   { justify-content: center; }
+	.edm-lp-page .lp-iphone-wrap { order: -1; display: flex; justify-content: center; }
+	.edm-lp-page .lp-feat-cards  { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+	.edm-lp-page .lp-pricing     { grid-template-columns: 1fr; max-width: 420px; }
+}
+
+@media (max-width: 640px) {
+	.edm-lp-page .lp-hero     { padding: 52px 16px 44px; }
+	.edm-lp-page .lp-hero h1  { font-size: 2.6rem; }
+	.edm-lp-page .lp-iphone   { width: 210px; }
+	.edm-lp-page .lp-section  { padding: 56px 16px; }
+	.edm-lp-page .lp-section-head { margin-bottom: 38px; }
+	.edm-lp-page .lp-section-head h2 { font-size: 1.75rem; }
+	.edm-lp-page .lp-steps    { grid-template-columns: 1fr; gap: 28px; }
+	.edm-lp-page .lp-steps::before { display: none; }
+	.edm-lp-page .lp-cta-strip h2  { font-size: 1.8rem; }
+	.edm-lp-page .lp-price-card    { padding: 28px 22px 24px; }
+	.edm-lp-page .lp-feat-cards    { max-width: 100%; }
+}
+
+@media (max-width: 480px) {
+	.edm-lp-page .lp-hero h1  { font-size: 2.1rem; }
+	.edm-lp-page .lp-iphone   { width: 185px; transform: perspective(900px) rotateY(-10deg) rotateX(4deg); }
+}
