@@ -370,3 +370,9 @@ add_action('elementor/widgets/register', function($widgets_manager) {
 
     $widgets_manager->register(new Dodaj_Lokal_Widget());
 }, 15);
+
+// =========================================================================
+// Region Stranice — "Gdje na kafu u…"
+// =========================================================================
+require_once get_stylesheet_directory() . '/includes/class-region-pages.php';
+new ML_Region_Pages();

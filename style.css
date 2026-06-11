@@ -700,3 +700,57 @@ h1.post-hero-title {
         font-size: 22px !important;
     }
 }
+
+/* =============================================
+   REGION PAGE — "Gdje na kafu u…"
+   template-gdje-na-kafu.php
+   ============================================= */
+
+/* Hero bez slike: fallback boja */
+.post-hero--no-image {
+    background: #2b1e12 !important;
+    min-height: 40vh !important;
+}
+
+/* Explore iframe sekcija — zauzima ostatak viewporta */
+.edm-region-explore {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.edm-region-explore iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* "Otvori mapu" link u hero-u — diskretna varijanta */
+.edm-region-map-cta {
+    margin-top: 4px;
+}
+
+/* Na mobilnom: manji iframe visina */
+@media (max-width: 767px) {
+    .edm-region-explore {
+        height: 85vh;
+    }
+}
+
+/* =============================================
+   EMBEDDED MODE — ?edm_embed=1
+   Ove klase se primjenjuju u iDoc-u (iframe),
+   ali ih je dobro imati i ovdje kao backup.
+   ============================================= */
+body.edm-embedded .c27-main-header,
+body.edm-embedded footer,
+body.edm-embedded #wpadminbar {
+    display: none !important;
+}
+
+body.edm-embedded.admin-bar {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
