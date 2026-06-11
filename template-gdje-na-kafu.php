@@ -2,9 +2,11 @@
 /**
  * Template Name: Gdje na kafu — Region
  *
- * Hero slika grada + mapa sa listom ispod (inline iframe na /region/{slug}/).
+ * Hero slika grada + grid preview kartica (tema's get_preview_card, SEO-friendly).
  * Meta polje na stranici: _edm_region_slug (slug region taksonomije, npr. "tivat")
  * Featured image: stranica → region term image → tamni fallback
+ *
+ * Text domain: espresso4me
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -30,28 +32,22 @@ if ( has_post_thumbnail( $post_id ) ) {
 	}
 }
 
-// Explore URL — direktno na region taxonomy (isto što je /region/tivat/)
-$explore_url = $region_slug ? home_url( '/region/' . $region_slug . '/' ) : '';
-
 get_header();
 ?>
 
 <div class="edm-region-page">
 
-	<!-- ============================================================
-	     HERO — isti izgled kao single blog post (.post-hero CSS)
-	     ============================================================ -->
 	<div class="post-hero<?php echo $hero_image ? '' : ' post-hero--no-image'; ?>"
 		<?php if ( $hero_image ) : ?>
 			style="background-image: url('<?php echo esc_url( $hero_image ); ?>');"
 		<?php endif; ?>
 	>
 		<div class="post-hero-overlay"></div>
-		<div class="post-hero-content">
+		<div class="post-hero-content edm-hero-content">
 			<div class="post-hero-meta">
 				<span class="post-hero-tag">
 					<i class="fa fa-coffee"></i>
-					Gdje na kafu
+					<?php echo esc_html_x( 'Gdje na kafu', 'hero badge', 'espresso4me' ); ?>
 				</span>
 				<?php if ( $region_slug ) :
 					$term_label = get_term_by( 'slug', $region_slug, 'region' );
@@ -67,57 +63,136 @@ get_header();
 		</div>
 	</div>
 
-	<!-- ============================================================
-	     MAPA — inline iframe na /region/{slug}/
-	     JS uklanja header/footer unutar iframe-a (isti domen)
-	     ============================================================ -->
-	<?php if ( $explore_url ) : ?>
-	<div class="edm-region-explore">
-		<iframe
-			id="edm-explore-iframe"
-			src="<?php echo esc_url( $explore_url ); ?>"
-			title="<?php echo esc_attr( get_the_title() . ' — mapa' ); ?>"
-			frameborder="0"
-			loading="eager"
-		></iframe>
-	</div>
-	<?php endif; ?>
-
 </div>
 
-<script>
-(function () {
-	var iframe = document.getElementById('edm-explore-iframe');
-	if (!iframe) return;
+<?php
+if ( $region_slug ) :
+	$region_term = get_term_by( 'slug', $region_slug, 'region' );
+	$region_name = $region_term ? $region_term->name : ucfirst( $region_slug );
 
-	function injectStyle(iDoc) {
-		if (!iDoc || !iDoc.head) return;
-		if (iDoc.getElementById('edm-embed-css')) return;
+	$listings_q = new WP_Query( [
+		'post_type'              => 'job_listing',
+		'post_status'            => 'publish',
+		'posts_per_page'         => 24,
+		'orderby'                => 'date',
+		'order'                  => 'DESC',
+		'update_post_meta_cache' => true,
+		'tax_query'              => [ [
+			'taxonomy' => 'region',
+			'field'    => 'slug',
+			'terms'    => $region_slug,
+		] ],
+	] );
 
-		var s = iDoc.createElement('style');
-		s.id = 'edm-embed-css';
-		s.textContent =
-			// Sakrij header i footer unutar iframe-a
-			'.c27-main-header { display:none !important; }' +
-			'header.site-header, #masthead { display:none !important; }' +
-			'#wpadminbar { display:none !important; }' +
-			'footer, .site-footer, #colophon { display:none !important; }' +
-			// Ukloni padding koji ostavlja prazno mjesto umjesto headera
-			'body.admin-bar { margin-top:0 !important; padding-top:0 !important; }' +
-			'#page, body { padding-top:0 !important; }' +
-			// Sakrij archive heading ("Regions > Tivat" naslov) unutar explore
-			'.archive-page .archive-heading, .explore-page > .i-section:first-child { display:none !important; }';
+	if ( $listings_q->have_posts() ) :
+		$schema_items = [];
+		$position     = 1;
+?>
 
-		iDoc.head.appendChild(s);
-	}
+<section class="edm-listings-section">
+	<div class="edm-listings-inner">
 
-	iframe.addEventListener('load', function () {
-		try {
-			var iDoc = iframe.contentDocument || iframe.contentWindow.document;
-			injectStyle(iDoc);
-		} catch (e) { /* samo isti domen */ }
-	});
-})();
-</script>
+		<!-- ============================================================
+		     BREADCRUMBS (stavka 7) — BreadcrumbList schema
+		     ============================================================ -->
+		<nav class="edm-breadcrumbs" aria-label="<?php echo esc_attr_x( 'Navigacioni put', 'aria-label', 'espresso4me' ); ?>">
+			<ol itemscope itemtype="https://schema.org/BreadcrumbList">
+				<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+					<a itemprop="item" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+						<span itemprop="name"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></span>
+					</a>
+					<meta itemprop="position" content="1" />
+				</li>
+				<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+					<span itemprop="name"><?php the_title(); ?></span>
+					<link itemprop="item" href="<?php echo esc_url( get_permalink( $post_id ) ); ?>" />
+					<meta itemprop="position" content="2" />
+				</li>
+			</ol>
+		</nav>
+
+		<!-- Card grid -->
+		<div class="edm-cards-grid">
+		<?php while ( $listings_q->have_posts() ) : $listings_q->the_post();
+			$lid = get_the_ID();
+			$schema_items[] = [
+				'@type'    => 'ListItem',
+				'position' => $position++,
+				'url'      => get_permalink(),
+				'name'     => get_the_title(),
+			];
+			echo \MyListing\get_preview_card( $lid ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		endwhile;
+		wp_reset_postdata(); ?>
+		</div>
+
+	</div>
+</section>
+
+<?php
+	// ItemList JSON-LD schema
+	if ( ! empty( $schema_items ) ) :
+		/* translators: %s: naziv grada/regiona */
+		$schema_name = sprintf( _x( 'Kafići u %s', 'schema ItemList name', 'espresso4me' ), $region_name );
+		/* translators: %s: naziv grada/regiona */
+		$schema_desc = get_post_meta( $post_id, '_yoast_wpseo_metadesc', true )
+			?: sprintf( _x( 'Pronađi kafiće i mjesta za kafu u %s.', 'schema ItemList description', 'espresso4me' ), $region_name );
+
+		$schema = [
+			'@context'        => 'https://schema.org',
+			'@type'           => 'ItemList',
+			'name'            => $schema_name,
+			'description'     => $schema_desc,
+			'url'             => get_permalink( $post_id ),
+			'numberOfItems'   => count( $schema_items ),
+			'itemListElement' => $schema_items,
+		];
+		echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) . "</script>\n";
+	endif;
+	?>
+
+<?php endif; // have_posts ?>
+
+<!-- ============================================================
+     INTERNI LINKOVI — ostali gradovi (stavka 8)
+     Distribuiše link authority između region stranica
+     ============================================================ -->
+<?php
+$all_regions   = ML_Region_Pages::get_regions();
+$other_regions = array_filter( $all_regions, function( $r ) use ( $region_slug ) {
+	return $r['region_slug'] !== $region_slug;
+} );
+
+if ( ! empty( $other_regions ) ) : ?>
+<section class="edm-other-cities">
+	<div class="edm-listings-inner">
+		<h2 class="edm-other-cities-heading">
+			<?php echo esc_html_x( 'Gdje na kafu u Crnoj Gori', 'other cities heading', 'espresso4me' ); ?>
+		</h2>
+		<ul class="edm-other-cities-list">
+		<?php foreach ( $other_regions as $r ) :
+			$other_term = get_term_by( 'slug', $r['region_slug'], 'region' );
+			if ( ! $other_term || is_wp_error( $other_term ) ) continue;
+			$other_url = get_term_link( $other_term );
+			if ( is_wp_error( $other_url ) ) continue;
+		?>
+			<li>
+				<a href="<?php echo esc_url( $other_url ); ?>">
+					<?php
+					/* translators: %s: naziv grada u lokativu (npr. "Podgorici") */
+					printf(
+						esc_html_x( 'Gdje na kafu u %s', 'other city link', 'espresso4me' ),
+						esc_html( $r['region'] )
+					);
+					?>
+				</a>
+			</li>
+		<?php endforeach; ?>
+		</ul>
+	</div>
+</section>
+<?php endif; ?>
+
+<?php endif; // region_slug ?>
 
 <?php get_footer(); ?>

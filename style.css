@@ -740,6 +740,136 @@ h1.post-hero-title {
 }
 
 /* =============================================
+   REGION PAGE — card grid (koristi tematske preview kartice)
+   ============================================= */
+
+/* Hero title poravnat sa grid-om ispod */
+.edm-hero-content {
+    max-width: 1200px !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+}
+
+.edm-listings-section {
+    background: #f5f0ea;
+    padding: 48px 0 72px;
+}
+
+.edm-listings-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* 3-kolonski grid koji prati isti raspored kao početna */
+.edm-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+@media (max-width: 1024px) {
+    .edm-cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    .edm-listings-section {
+        padding: 36px 0 52px;
+    }
+
+    .edm-listings-inner {
+        padding: 0 14px;
+    }
+
+    .edm-hero-content {
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .edm-cards-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Breadcrumbs */
+.edm-breadcrumbs {
+    margin-bottom: 28px;
+}
+
+.edm-breadcrumbs ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    font-size: 13px;
+    color: #9b7a5d;
+}
+
+.edm-breadcrumbs li + li::before {
+    content: '/';
+    margin-right: 4px;
+    opacity: 0.5;
+}
+
+.edm-breadcrumbs a {
+    color: #9b7a5d;
+    text-decoration: none;
+}
+
+.edm-breadcrumbs a:hover {
+    color: #c8773a;
+    text-decoration: underline;
+}
+
+/* Interni linkovi — ostali gradovi */
+.edm-other-cities {
+    background: #fff;
+    padding: 48px 0 56px;
+}
+
+.edm-other-cities-heading {
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    font-weight: 700;
+    color: #2b1e12;
+    margin: 0 0 20px;
+}
+
+.edm-other-cities-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 12px;
+}
+
+.edm-other-cities-list a {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 1px solid #e0d4c8;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #5a3e2b;
+    text-decoration: none;
+    background: #faf6f0;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.edm-other-cities-list a:hover {
+    background: #c8773a;
+    border-color: #c8773a;
+    color: #fff;
+}
+
+/* =============================================
    EMBEDDED MODE — ?edm_embed=1
    Ove klase se primjenjuju u iDoc-u (iframe),
    ali ih je dobro imati i ovdje kao backup.

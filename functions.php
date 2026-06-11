@@ -66,6 +66,23 @@ add_filter('option_category_base', function() {
     return '';
 }, 20);
 
+// Canonical: /region/{slug}/ → /gdje-na-kafu-u-{slug}/
+// Sprječava duplicate content između taxonomy arhive i region stranica.
+add_filter( 'wpseo_canonical', function( $canonical ) {
+    if ( ! is_tax( 'region' ) ) {
+        return $canonical;
+    }
+    $term = get_queried_object();
+    if ( ! $term || is_wp_error( $term ) ) {
+        return $canonical;
+    }
+    $page_id = (int) get_term_meta( $term->term_id, '_edm_region_page_id', true );
+    if ( ! $page_id ) {
+        return $canonical;
+    }
+    return get_permalink( $page_id ) ?: $canonical;
+} );
+
 // Cities Grid Elementor Widget
 add_action('elementor/widgets/register', function($widgets_manager) {
     if (!class_exists('\Elementor\Widget_Base')) return;
